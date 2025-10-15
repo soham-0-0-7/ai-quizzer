@@ -616,3 +616,8 @@ All endpoints return appropriate HTTP status codes:
 - Adaptive difficulty system requires at least one previous quiz for optimal performance
 - Redis cache dramatically improves API response times for quiz data
 - Leaderboard updates in real-time after each quiz submission
+
+
+## Recordings , Links and documentation 
+
+- https://drive.google.com/drive/folders/10DBmVcyvr5Gz6BNzytJEpiPPceX8PlQz?usp=sharing
