@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  username String @unique
+  password String
+
+  Quiz Quiz[]
+  Submission Submission[]
+}
+model Quiz {
+  id           Int       @id @default(autoincrement())
+  createdOn    DateTime  @default(now())
+  totalPoints  Float
+  difficulty   String
+  subject      String
+  grade        String    // <-- Add this line
+  userId       Int
+  user         User      @relation(fields: [userId], references: [id])
+  questions    Question[]
+  Submission   Submission[]
+}
+
+model Question {
+  id        Int    @id @default(autoincrement())
+  quizId    Int
+  problem   String
+  options   String
+  correct   String
+  difficulty String
+  points    Float
+
+  quiz      Quiz   @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+model Submission {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  quizId         Int
+  totalScore     Float
+  myScore        Float
+  subject        String
+  gradepoint     String   // <-- renamed from 'grade'
+  grade          String   // <-- new field for quiz grade
+  submittedOn    DateTime @default(now())
+  tries          Int
+  suggestions    String
+  userAnswers    String
+  questionPoints String
+
+  user           User     @relation(fields: [userId], references: [id])
+  quiz           Quiz     @relation(fields: [quizId], references: [id])
+}

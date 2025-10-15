@@ -1,0 +1,18 @@
+# Environment variables
+.env
+.env.*
+
+# Node.js dependencies
+node_modules/
+
+# VS Code settings
+.vscode/
+
+# GitHub specific files (workflows, issue templates, etc.)
+.github/
+
+.recordings/
+recordings/
+
+.api_docs/
+api_docs/
